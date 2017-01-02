@@ -1,0 +1,44 @@
+{
+  "name": "Onefastsnail",
+  "version": "1.0.0",
+  "description": "A Onefastsnail WP plugin",
+  "main": "gulpfile.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/username/repository.git"
+  },
+  "author": "Mr Onefastsnail",
+  "license": "ISC",
+  "dependencies": {
+    "flux": "^2.1.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-wait": "0.0.2",
+    "jshint": "^2.9.4",
+    "jshint-stylish": "^2.2.1",
+    "moment": "^2.11.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
+  },
+  "devDependencies": {
+    "browserify": "~12.0.1",
+    "gulp": "~3.9",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-cached": "^1.0.4",
+    "gulp-changed": "^1.2.1",
+    "gulp-clean-css": "^2.0.3",
+    "gulp-concat": "^2.4.1",
+    "gulp-plumber": "^1.0.1",
+    "gulp-sass": "~2.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.0.1",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.2.3",
+    "lodash": "^4.16.6",
+    "reactify": "^1.1.1",
+    "run-sequence": "^1.1.2",
+    "vinyl-buffer": "~1.0.0",
+    "vinyl-source-stream": "~1.0.0",
+    "watchify": "^3.7.0"
+  }
+}
