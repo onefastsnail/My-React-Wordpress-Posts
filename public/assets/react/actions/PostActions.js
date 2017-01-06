@@ -1,7 +1,7 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var appConstants = require('../constants/appConstants');
 
-//actions may contain the async code as once we have the data from a promise/request we will dispatch an event to the dispatcher to trigger the store listeners to then process etc
+//actions may contain the async code as once we have the data from a promise/request we will dispatch an event to the dispatcher to trigger the store listeners to then process upon thier callbacks
 var PostActions = {
   filterPosts: function(data){
     AppDispatcher.handleAction({

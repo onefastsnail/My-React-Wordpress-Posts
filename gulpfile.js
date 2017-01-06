@@ -72,6 +72,9 @@ gulp.task('js', [], function() {
         .pipe(gulp.dest(paths.js.dist));
 });
 
+/*
+    compile and browserify our React components
+ */
 gulp.task('react', function() {
     return browserify(paths.react.app)
     .transform(reactify)
@@ -84,7 +87,9 @@ gulp.task('react', function() {
     .pipe(gulp.dest(paths.react.dist));
 });
 
-// Watch
+/*
+    Watch our project files for changes
+ */
 gulp.task('watch', [], function() {
     gulp.watch(paths.js.src, ['js']);
     gulp.watch(paths.sass.src, ['sass']);

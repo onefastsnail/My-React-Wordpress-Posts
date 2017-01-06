@@ -1,5 +1,4 @@
 var React = require('react');
-var Button = require('../Button');
 
 var Post = React.createClass({
 
@@ -8,33 +7,29 @@ var Post = React.createClass({
 
   render: function(){
 
-    // var excerpt = this.props.data.content.rendered.replace(/(<([^>]+)>)/ig,"");
-    // excerpt = excerpt.substring(0, 255);
-
     var heroBackgroundStyles = {
-      backgroundImage: 'url(http://fakeimg.pl/650x650/eeeeee/666/?text='+this.props.data.ID+')'
+      backgroundImage: 'url(http://fakeimg.pl/650x650/eeeeee/666/?text='+this.props.data.id+')'
     };
 
     return(
 
-      <div className="col-xs-6 col-sm-4">
-        <div className="c-hero">
+        <div className="c-small-post">
 
-            <div className="c-background-image" style={heroBackgroundStyles}></div>
-
-            <div className="c-overlay"></div>
-
-            <div className="c-hero__content">
-                <p><small>{this.props.data.date}</small></p>
-                <p><strong>{this.props.data.title.rendered}</strong></p>
-                {<div dangerouslySetInnerHTML={{__html: this.props.data.excerpt.rendered}}></div>}
-                <Button url={this.props.data.link} text="ReadMore"/>
+            <div className="c-small-post__image">
+                <a href={this.props.data.link} title="{this.props.data.title.rendered}" className="h-full-cover"><div className="c-background-image" style={heroBackgroundStyles}></div></a>
             </div>
 
-            <hr />
+            <div className="c-small-post__content">
+
+              <p className="c-small-post__date">{this.props.data.date}</p>
+
+                <h3 className="c-small-post__title"><a href={this.props.data.link} title="{this.props.data.title.rendered}">{this.props.data.title.rendered}</a></h3>
+
+                {<div className="c-wysiwyg-html" dangerouslySetInnerHTML={{__html: this.props.data.excerpt.rendered}}></div>}
+
+            </div>
 
         </div>
-      </div>
 
     );
 

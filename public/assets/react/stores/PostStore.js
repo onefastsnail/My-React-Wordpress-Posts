@@ -17,7 +17,9 @@ var _store = {
 
     start: 0,
     end: 6,
-    perPage: 6
+    perPage: 6,
+
+    infiniteScroll: false
 };
 
 //private methods, here we will filter the data and emit the change back to the components, in this case new posts list

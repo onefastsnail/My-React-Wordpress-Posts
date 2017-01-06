@@ -18,8 +18,15 @@ var PostsController = React.createClass({
   componentDidMount: function(){
     PostStore.addChangeListener(this._onChange);
 
-    //a listender for on sroll to give us an infinite scroll
-    window.addEventListener('scroll', this.handleScroll);
+    //a listener for on sroll to give us an infinite scroll
+
+    if(this.state.filter.infiniteScroll == true){
+      window.addEventListener('scroll', this.handleScroll);
+    }
+    else {
+      window.removeEventListener('scroll', this.handleScroll);
+    }
+
   },
   componentWillUnmount: function(){
     PostStore.removeChangeListener(this._onChange);
@@ -33,9 +40,11 @@ var PostsController = React.createClass({
   },
 
   handleScroll: function(event) {
-      // if(jQuery(window).scrollTop() >= jQuery('#my-react-posts').offset().top + jQuery('#my-react-posts').outerHeight() - window.innerHeight - 200) {
-      //   this.handleShowMore();
-      // }
+
+      if(jQuery(window).scrollTop() >= jQuery('#my-react-posts').offset().top + jQuery('#my-react-posts').outerHeight() - window.innerHeight - 200) {
+        this.handleShowMore();
+      }
+
   },
 
   //lets send an action to filter posts
@@ -58,6 +67,20 @@ var PostsController = React.createClass({
   handleShowMore: function(){
       var end = this.state.filter.end + this.state.filter.perPage;
       this.handleFilterChange({'end': end});
+  },
+
+  handleScrollChange: function(e){
+
+      if(this.state.filter.infiniteScroll == false){
+        window.addEventListener('scroll', this.handleScroll);
+        this.handleFilterChange({'infiniteScroll': true});
+      }
+      else {
+        window.removeEventListener('scroll', this.handleScroll);
+        this.handleFilterChange({'infiniteScroll': false});
+      }
+
+      
   },
 
   render: function(){
@@ -84,32 +107,42 @@ var PostsController = React.createClass({
     return (
 
       <section className="section">
-          <div className="container">
-              <div className="row">
-                  <div className="col-xs-12 text-center">
+          <div className="row">
+              <div className="col-xs-12">
 
-                      <h1 className="text-center">Posts that React</h1>
-                      <p className="text-center">Showing {this.state.filter.paginated.length} of {this.state.filter.filtered.length}</p>
-                      
-                      <form action="">
-                          <label htmlFor="search">Search</label>
-                          <input name="query" type="text" className="form-control" id="search" onChange={this.handleQueryChange} value={this.state.filter.query} />
-                          <label htmlFor="sort">Sort</label>
-                          <select className="form-control" id="sort" value={this.state.filter.sortBy} onChange={this.handleSortChange}>
-                              <option value='newest'>Newest</option>
-                              <option value='alphabetically'>Alphabetically</option>
-                          </select>
-                          <Button url="#" text="Clear" handleClick={this.handleClearFilter}/>
-                      </form>
+                  <h1>Posts that React</h1>
+                  <p>Showing {this.state.filter.paginated.length} of {this.state.filter.filtered.length}</p>
+                  
+                  <form action="" className="form-inline">
 
-                  </div>
-              </div>
-              <div className="row h-no-gutter">
-                  {posts} {showMore}
+                      <div className="form-group">
+                        <label htmlFor="exampleInputName2">Name</label>
+                        <input name="query" type="text" className="form-control" id="search" onChange={this.handleQueryChange} value={this.state.filter.query} />
+                      </div>
+
+                      <div className="form-group">
+                        <label htmlFor="sort">Sort</label>
+                        <select className="form-control" id="sort" value={this.state.filter.sortBy} onChange={this.handleSortChange}>
+                            <option value='newest'>Newest</option>
+                            <option value='alphabetically'>Alphabetically</option>
+                        </select>
+                      </div>
+
+                      <div className="checkbox">
+                          <label>
+                            <input type="checkbox" onChange={this.handleScrollChange} /> infinite scroll
+                          </label>
+                      </div>
+
+                      <Button url="#" text="Clear" handleClick={this.handleClearFilter}/>
+                  </form>
+
               </div>
           </div>
+          <div className="row h-no-gutter">
+              {posts} {showMore}
+          </div>
       </section>
-
 
     )
   }

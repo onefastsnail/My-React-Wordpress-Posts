@@ -1,0 +1,42 @@
+.c-small-post {
+    position: relative;
+
+    &:first-child {
+        margin-top: 3rem;
+    }
+	
+	@media only screen and (min-width : 480px) {
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		overflow: hidden;
+	} 
+
+    &__image {
+        position: relative;
+        padding-top: 40%;
+        
+        @media only screen and (min-width : 480px) {
+        	width: 30%;
+        	padding-top: 0;
+        } 
+    }
+    &__content {
+        @media only screen and (min-width : 480px) {
+        	width: 70%;
+        	padding-left: 4%;
+        } 
+    }
+    &__date {
+        margin: 1rem 0;
+        font-size: 0.8em;
+        color: #ccc;
+    }
+    &__title {
+        margin-bottom: 1rem;
+        margin-top: 0 !important;
+    }
+    & + & {
+        margin-top: 3rem;
+    }
+}
